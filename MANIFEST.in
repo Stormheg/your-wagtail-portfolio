@@ -1,0 +1,19 @@
+# This file tells pip what files should be included when we package our project for deployment to a host
+# The file `setup.py` in the same directory is related.
+
+# Don't include anything at first. No database files, no media files. Nothing at all.
+exclude *
+recursive-exclude * *
+
+# Do include manage.py (so we can administrate our project on our hosting platform)
+include manage.py
+# Do include this file itself. It is important.
+include MANIFEST.in
+
+# And of course, include EVERYTHING in the portfolio_site/ folder. That is the core of our project!
+graft portfolio_site
+
+# Don't include any meta files that might linger in the portfolio_site folder
+global-exclude .DS_Store
+global-exclude *.pyc
+global-exclude __pycache__

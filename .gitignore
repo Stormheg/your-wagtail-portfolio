@@ -1,0 +1,18 @@
+# Files created by code editors
+.idea/
+.vscode/
+
+# Files created by Python
+__pycache__/
+*.egg-info/
+*.pyc
+venv/
+
+# Database file
+db.sqlite3
+
+# Files created by Apple macOS
+.DS_Store
+
+# Media files we uploaded in Wagtail
+media/
