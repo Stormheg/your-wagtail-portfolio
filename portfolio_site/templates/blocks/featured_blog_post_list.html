@@ -1,0 +1,11 @@
+{% load wagtailcore_tags %}
+<div>
+    <h2>{{ self.heading }}</h2>
+    {% if self.text %}
+        <p>{{ self.text }}</p>
+    {% endif %}
+
+    {% for post in self.posts %}
+        {% include_block post %}
+    {% endfor %}
+</div>

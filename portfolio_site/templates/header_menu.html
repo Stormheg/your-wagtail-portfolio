@@ -1,31 +1,32 @@
 {% load wagtailcore_tags portfoliosite_tags %}
 
-<navigation>
-    <ul>
-        {# Use one of Wagtail's tags (from 'wagtailcore_tags') to get the current site. You can manage multiple websites from the same Wagtail project so we need to make sure we are rendering the right menu. #}
-        {% wagtail_site as current_site %}
-
-        {# The root page of your site is the home page, and it should be the first link in the navigation #}
-        {# Use our own custom tag (from 'portfoliosite_tags') to check if this link is the page we are on. Stores a True/False value in `highlight_root_page`. #}
-        {% is_current_page current_site.root_page as highlight_root_page %}
-        <li>
-            {# Add the 'active' css class if `highlight_root_page` contains the value True. This will cause the menu item to be highlighted. #}
-            <a class="{% if highlight_root_page %}active{% endif %}" href="{{ current_site.root_page.full_url }}">
-                {{ current_site.root_page.title }}
-            </a>
-        </li>
-
-        {% comment %}
-            Create a link to every published page for all pages directly underneath your home page. Those are called 'child pages'.
-            Calling `get_children` also follows the 'sort menu order' set in the Wagtail admin. Meaning you can change the order in which the links appear from Wagtail.
-        {% endcomment %}
-        {% for menu_page in current_site.root_page.get_children.live %}
+{# Use one of Wagtail's tags (from 'wagtailcore_tags') to get the current site. You can manage multiple websites from the same Wagtail project so we need to make sure we are rendering the right menu. #}
+{% wagtail_site as current_site %}
+<header class="header">
+    <nav class="header-nav">
+        <ul class="header-nav-items">
+            {# The root page of your site is the home page, and it should be the first link in the navigation #}
+            {# Use our own custom tag (from 'portfoliosite_tags') to check if this link is the page we are on. Stores a True/False value in `highlight_root_page`. #}
+            {% is_current_page current_site.root_page as highlight_root_page %}
             <li>
-                {% is_current_page menu_page as highlight_menu_item %}
-                <a class="{% if highlight_menu_item %}active{% endif %}" href="{{ menu_page.full_url }}">
-                    {{ menu_page.title }}
+                {# Add the 'active' css class if `highlight_root_page` contains the value True. This will cause the menu item to be highlighted. #}
+                <a class="nav-item {% if highlight_root_page %}nav-item--active{% endif %}" href="{{ current_site.root_page.full_url }}">
+                    {{ current_site.root_page.title }}
                 </a>
             </li>
-        {% endfor %}
-    </ul>
-</navigation>
+    
+            {% comment %}
+                Create a link to every published page for all pages directly underneath your home page. Those are called 'child pages'.
+                Calling `get_children` also follows the 'sort menu order' set in the Wagtail admin. Meaning you can change the order in which the links appear from Wagtail.
+            {% endcomment %}
+            {% for menu_page in current_site.root_page.get_children.live %}
+                <li>
+                    {% is_current_page menu_page as highlight_menu_item %}
+                    <a class="nav-item {% if highlight_menu_item %}nav-item--active{% endif %}" href="{{ menu_page.full_url }}">
+                        {{ menu_page.title }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </nav>
+</header>

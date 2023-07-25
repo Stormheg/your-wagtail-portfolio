@@ -1,0 +1,7 @@
+{% load wagtailcore_tags wagtailimages_tags %}
+<div>
+    <h2>{{ self.heading }}</h2>
+    <div>{{ self.text|richtext }}</div>
+
+    {% image page.image width-700 %}
+</div>

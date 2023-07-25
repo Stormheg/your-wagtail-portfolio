@@ -1,1 +1,23 @@
 {% extends "base.html" %}
+
+{% load l10n %}
+
+{% block content %}
+    <h1>{{ page.title }}</h1>
+
+    <p>Here are some of my recent posts.</p>
+
+    <ul>
+        {% for post in blog_posts %}
+            <li>
+                <a href="{{ post.full_url }}">{{ post.title }}</a>
+                {# The 'localize' filter ensures the date is outputted in a nice format. Like: 'July 21, 2023' #}
+                <span>{{ post.date|localize }}</span>
+                <p>{{ post.intro }}</p>
+            </li>
+        {# 'empty' is a special tag. Everything after it until the endfor tag is only rendered if there are no items in 'blog_posts' #}
+        {% empty %}
+            <li>Sorry, I haven't posted anything yet.</li>
+        {% endfor %}
+    </ul>
+{% endblock content %}

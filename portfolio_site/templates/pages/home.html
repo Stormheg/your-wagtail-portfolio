@@ -1,1 +1,28 @@
 {% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block content %}
+    <div class="viewport-container">
+        <div class="b-header">
+            <figure class="b-header__image-container">
+                {% image page.image width-300 class="b-header__image" %}
+                <figcaption class="b-header__image-caption">{{ page.your_name }}</figcaption>
+            </figure>
+            <div>
+                <div class="b-header__text">
+                    <h1 class="b-header__headline">{{ page.headline }}</h1>
+                    <p class="b-header__subtext">{{ page.subtext }}</p>
+                </div>
+                {% if page.button_label and page.button_page %}
+                    <a class="b-header__button button" href="{{ page.button_page.full_url }}">{{ page.button_label }}</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="content viewport-container">
+        {% for streamfield_block in page.body %}
+            {% include_block streamfield_block %}
+        {% endfor %}
+    </div>
+{% endblock content %}

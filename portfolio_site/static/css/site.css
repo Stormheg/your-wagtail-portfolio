@@ -1,0 +1,195 @@
+/* CSS reset */
+html, body {
+  height: 100%;
+}
+
+html {
+  /* box-sizing: border-box; */
+  font-size: 16px;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body, h1, h2, h3, h4, h5, h6, p, ol, ul {
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Set some new baselines */
+*:focus-visible {
+  outline: var(--focus-outline);
+  outline-offset: 3px;
+}
+
+body {
+  background-color: var(--color-body);
+  color: var(--color-body-text);
+  font-family: var(--font-family);
+  line-height: var(--line-height);
+}
+
+h1 {
+  color: var(--color-primary-body-text);
+  font-weight: bold;
+  font-size: var(--font-size-11);
+  text-shadow: var(--text-shadow-primary);
+}
+
+.viewport-container {
+  margin: 0 auto;
+  padding: 0 var(--viewport-container-padding);
+  max-width: 1400px;
+}
+
+
+/* Navigation */
+.header {
+  color: var(--color-primary-body-text);
+  margin: var(--spacing-2);
+  padding: var(--spacing-6) 0;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+.header-nav-items {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  gap: var(--spacing-2);
+  font-size: var(--font-size-6);
+}
+
+.nav-item {
+  display: block;
+  color: var(--color-primary-body-text);
+  padding: var(--spacing-3);
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 0.25em;
+  border: 2px solid transparent;
+  transition: background-color .2s ease-in-out, border-color .2s ease-in-out;
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-item {
+    transition: none;
+  }
+}
+
+/* Currently active nav item  */
+.nav-item--active.nav-item--active:not(:hover), .nav-item.nav-item--active:hover.nav-item--active:not(:focus) {
+  border-color: var(--color-secondary-600);
+  background-color: var(--color-secondary-100);
+  box-shadow: var(--box-shadow-secondary);
+}
+
+/* Hover / focus nav item */
+.nav-item:hover, .nav-item:focus, .nav-item:active {
+  background-color: var(--color-secondary-100);
+  border-color: var(--color-secondary-800);
+  box-shadow: var(--box-shadow-secondary);
+} 
+
+/* Home (on home page) */
+.b-header {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-5);
+  margin-bottom: var(--spacing-9);
+}
+
+
+.b-header__image-container {
+  position: relative;
+
+  max-width: 200px;
+  width: fit-content;
+  margin: var(--spacing-6) 0;
+}
+
+.b-header__image-caption {
+  position: absolute;
+  bottom: 0;
+  text-transform: uppercase;
+  font-weight: bold;
+  transform: translate(-20%, 35%);
+  background-color: var(--color-body);
+  border: 2px solid var(--color-secondary-100);
+  border-radius: 8px;
+  padding: var(--spacing-3);
+  box-shadow: var(--box-shadow-secondary);
+}
+
+.b-header__image {
+  border: 6px solid var(--color-secondary-400);
+  box-shadow: var(--box-shadow-secondary);
+  border-radius: 25px;
+}
+
+.b-header__button {
+  margin-top: var(--spacing-7);
+}
+
+.b-header__text {
+  max-width: clamp(540px, 40vw, 600px);
+}
+
+
+@media only screen and (min-width: 1000px) {
+  .b-header {
+    flex-flow: row-reverse nowrap;
+    margin-bottom: var(--spacing-4)
+  }
+  .b-header__image-viewport-container {
+    max-width: 260px;
+  }
+
+  .b-header__text {
+    margin-right: clamp(var(--spacing-2), 5vw, var(--spacing-8));
+  }
+}
+
+.b-header__headline {
+  line-height: 1.25;
+  font-size: clamp(var(--font-size-8), 5vw, var(--font-size-10));
+  margin-bottom: var(--spacing-2);
+}
+
+
+.button {
+  display: inline-block;
+  padding: var(--spacing-3) var(--spacing-5);
+  border-radius: 8px;
+  border: 3px solid var(--btn-primary-border);
+  background-color: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
+  font-weight: bold;
+  box-shadow: var(--btn-primary-box-shadow);
+  transition: background-color .2s ease-in-out, border-color .2s ease-in-out, box-shadow .2s ease-in-out, text-decoration .2s ease-in-out;
+  text-underline-offset: 4px;
+  text-decoration-line: underline;
+  text-decoration-style: dashed;
+  text-decoration-thickness: 4px;
+  text-decoration-color: transparent;
+}
+
+.button:hover, .button:focus, .button:active {
+  text-decoration-color:var(--btn-primary-border);
+  box-shadow: var(--btn-primary-box-shadow-active);
+}

@@ -15,4 +15,7 @@ db.sqlite3
 .DS_Store
 
 # Media files we uploaded in Wagtail
-media/
+/media/
+
+# Static files collected through 'manage.py collectstatic'
+/static/
